@@ -8,7 +8,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { SSEClientTransport } from "@modelcontextprotocol/sdk/client/sse.js";
 
-const MCP_BASE_URL = process.env.NEXT_PUBLIC_MCP_URL || "http://localhost:8000";
+const MCP_BASE_URL = (process.env.NEXT_PUBLIC_MCP_URL || "http://localhost:8000").replace(/\/$/, "");
 
 export async function POST(
   request: NextRequest,
