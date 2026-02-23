@@ -27,20 +27,23 @@ COPY pyproject.toml uv.lock ./
 # Install dependencies into the system Python (no venv needed in container)
 RUN uv sync --frozen --no-dev
 
-# Copy application code
-COPY params.yaml ./
+# Copy application code and config
+COPY params.yaml main.py ./
 COPY src/ ./src/
+
+# Copy model artifacts and data needed at runtime
+COPY models/ ./models/
 COPY data/raw/ ./data/raw/
 
-# Create directories for generated artifacts
-RUN mkdir -p models/plots tracking data/processed
+# Create remaining directories for generated artifacts
+RUN mkdir -p tracking data/processed
 
-# Expose MCP server port
+# Expose default port (Heroku overrides via PORT env var)
 EXPOSE 8000
 
-# Health check — verify Python and imports work
+# Health check
 HEALTHCHECK --interval=30s --timeout=5s --retries=3 \
     CMD python -c "from src.interfaces.mcp.server import mcp; print('ok')" || exit 1
 
-# Start MCP server with SSE transport
-CMD ["uv", "run", "python", "-m", "src.interfaces.mcp.server", "--transport", "sse"]
+# Start MCP server — reads PORT env var (set by Heroku) or falls back to 8000
+CMD ["uv", "run", "python", "main.py", "serve"]

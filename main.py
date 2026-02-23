@@ -34,14 +34,18 @@ def main() -> None:
         print(f"Metrics: {results['training']['metrics']}")
 
     elif command == "serve":
+        import os
         from src.interfaces.mcp.server import mcp
 
         transport = sys.argv[2] if len(sys.argv) > 2 else "sse"
-        print(f"Starting MCP server with {transport} transport...")
+        # Heroku sets PORT dynamically; MCP_PORT is the local override; fallback 8000
+        port = int(os.environ.get("PORT") or os.environ.get("MCP_PORT") or 8000)
+        host = os.environ.get("MCP_HOST", "0.0.0.0")
+        print(f"Starting MCP server with {transport} transport on {host}:{port}...")
         if transport == "stdio":
             mcp.run(transport="stdio")
         else:
-            mcp.run(transport="sse", host="0.0.0.0", port=8000)
+            mcp.run(transport="sse", host=host, port=port)
 
     elif command == "evaluate":
         from src.services.pipelines.training_pipeline import stage_evaluate

@@ -1,0 +1,40 @@
+{
+  "best_model_type": "random_forest",
+  "metrics": {
+    "accuracy": 0.765791341376863,
+    "precision": 0.5441767068273092,
+    "recall": 0.7245989304812834,
+    "f1_score": 0.6215596330275229,
+    "roc_auc": 0.843014544421194
+  },
+  "confusion_matrix": {
+    "TP": 271,
+    "TN": 808,
+    "FP": 227,
+    "FN": 103
+  },
+  "top_features": {
+    "charges_ratio": 0.13768163528902186,
+    "tenure": 0.11142626511894038,
+    "TotalCharges": 0.09611465696688617,
+    "Contract_Two year": 0.08124487218018712,
+    "MonthlyCharges": 0.07631102806834686,
+    "avg_charges_per_month": 0.06938714661247626,
+    "InternetService_Fiber optic": 0.06470851981612659,
+    "PaymentMethod_Electronic check": 0.04759390396477474,
+    "Contract_One year": 0.027271382234545265,
+    "OnlineSecurity_Yes": 0.020662842563952122
+  },
+  "shap_top_features": {
+    "charges_ratio": 0.056134520413815024,
+    "InternetService_Fiber optic": 0.054993564451605526,
+    "Contract_Two year": 0.04963974668793995,
+    "tenure": 0.044075287813119084,
+    "PaymentMethod_Electronic check": 0.03113551305561175,
+    "TotalCharges": 0.026983298379831665,
+    "MonthlyCharges": 0.023625804790023474,
+    "Contract_One year": 0.01862142362559317,
+    "avg_charges_per_month": 0.017821430748518285,
+    "OnlineSecurity_Yes": 0.01579687230594919
+  }
+}

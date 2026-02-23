@@ -1,26 +1,6 @@
 """
-MCP Server — Churn Intelligence Platform
-==========================================
-
-The AI-operable interface to the entire ML system.
-
-MCP (Model Context Protocol) allows AI agents to call tools
-programmatically. This server exposes 7 tools that a Gemini
-(or Claude) client can invoke to interact with the ML system.
-
-ARCHITECTURE:
-- MCP server = thin wrapper (routing + serialization)
-- Business logic lives in pipelines/, models/, explainability/
-- This separation means adding FastAPI later is trivial
-
-GEMINI CLIENT COMPATIBILITY:
-We use SSE transport, which Gemini clients connect to over HTTP.
-The server runs on a configurable port (default 8000).
-
-INTERVIEW INSIGHT: "How do you serve ML models?"
-Answer: "We use MCP for AI agent access with SSE transport.
-The inference logic is decoupled from the serving layer, so
-adding REST/gRPC endpoints for traditional clients is trivial."
+MCP server — exposes 10 tools for AI agent access to the churn ML system.
+Uses SSE transport (FastMCP). Business logic stays in core/ and services/.
 """
 
 import json

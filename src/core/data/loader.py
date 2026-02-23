@@ -1,17 +1,7 @@
 """
-Data Loading & Cleaning
-=======================
-
-Handles raw data ingestion with basic cleaning.
-
-WHY SEPARATE MODULE: In production, data loading is its own concern.
-Data can come from databases, APIs, S3, or files. Isolating this
-makes it easy to swap data sources without touching training logic.
-
-INTERVIEW INSIGHT: "How do you handle data ingestion in production?"
-Answer: "We have a dedicated data loading layer that handles source
-abstraction, basic type cleaning, and deduplication. This is the
-first stage of our DVC pipeline."
+Data loading and cleaning — handles CSV ingestion, type fixes,
+and deduplication. Isolated so data sources can be swapped without
+touching training logic.
 """
 
 import pandas as pd

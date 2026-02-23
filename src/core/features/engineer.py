@@ -1,25 +1,6 @@
 """
-Feature Engineering for Churn Prediction
-=========================================
-
-Creates derived features from raw customer data.
-
-WHY: Raw features rarely capture business patterns directly.
-- tenure=24 is less useful than tenure_group="12-24" (mid-loyalty)
-- MonthlyCharges alone misses that high-spend seniors churn more
-
-KEY RULES:
-1. Features here use ONLY row-level data (no global stats)
-   → Safe to compute BEFORE train/test split (no data leakage)
-2. Global transforms (scaling, encoding) happen in the preprocessor
-   AFTER the split
-
-INTERVIEW INSIGHT: "Walk me through your feature engineering."
-Answer: "We create domain-specific features like tenure groups,
-service counts, and charge ratios. These capture customer behavior
-patterns that raw features miss. Importantly, these are row-level
-transforms computed before the split, while global transforms like
-scaling happen after the split to prevent data leakage."
+Feature engineering — creates domain-specific derived columns from raw customer data.
+All transforms are row-level (no global stats), safe to apply before the train/test split.
 """
 
 import pandas as pd

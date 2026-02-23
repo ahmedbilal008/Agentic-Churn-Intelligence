@@ -1,30 +1,6 @@
 """
-Model Registry & Selection
-===========================
-
-Manages model selection and provides a lightweight local registry.
-
-WHY A REGISTRY:
-In production, you need to know:
-- Which model is currently serving
-- What metrics it achieved
-- When it was trained
-- How to roll back if something goes wrong
-
-MLflow provides a Model Registry for this (Staging → Production → Archived).
-We implement a lightweight local version that complements MLflow.
-
-INTERVIEW INSIGHT: "How do you manage model versions in production?"
-Answer: "We use MLflow's Model Registry with stage transitions.
-Every model promotion requires metric thresholds and is audited.
-In this project, we implement a local registry pattern that
-demonstrates the same concepts."
-
-ALTERNATIVES:
-- MLflow Model Registry (built-in, good for medium teams)
-- Weights & Biases (better UI, better collaboration features)
-- SageMaker Model Registry (AWS-native, enterprise)
-- Vertex AI Model Registry (GCP-native)
+Model registry and selection — selects the best model from training results
+and provides a lightweight local registry that complements MLflow.
 """
 
 import json
@@ -47,9 +23,6 @@ def select_best_model(results: list[dict], metric: str = "f1_score") -> dict:
     Returns:
         The best result dict.
 
-    WHY F1: For churn prediction, we care about both precision
-    (don't annoy non-churners with retention offers) and recall
-    (don't miss actual churners). F1 balances both.
     """
     if not results:
         raise ValueError("No results to compare")

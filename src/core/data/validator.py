@@ -1,15 +1,6 @@
 """
-Data Validation
-===============
-
-Uses Pydantic schemas to validate data at the ingestion boundary.
-
-WHY VALIDATE: Garbage in → garbage out. If someone adds a row
-with MonthlyCharges = -999, the model won't error — it will
-silently produce wrong predictions. Validation catches this early.
-
-TRADE-OFF: Validating every row is O(n). For 7K rows it's fine.
-For millions of rows, validate a sample + enforce constraints in SQL.
+Data validation — validates ingested rows against Pydantic schemas
+to catch type errors and out-of-range values before they reach the model.
 """
 
 import pandas as pd

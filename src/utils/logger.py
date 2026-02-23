@@ -1,19 +1,5 @@
 """
-Structured Logging
-==================
-
-Provides consistent logging across all modules.
-
-WHY: In production ML systems, structured logging is critical for:
-- Debugging training failures
-- Monitoring data drift
-- Auditing model decisions (regulatory requirement)
-- Performance profiling
-
-INDUSTRY PRACTICE: Teams use structured logging (JSON format) with
-tools like ELK Stack, Datadog, or CloudWatch for centralized monitoring.
-We use Python's built-in logging for simplicity but structure it for
-easy migration to production logging frameworks.
+Provides a consistently formatted logger for all modules.
 """
 
 import logging

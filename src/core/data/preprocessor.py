@@ -1,29 +1,6 @@
 """
-Data Preprocessing Pipeline
-============================
-
-Handles encoding and scaling with a saved sklearn pipeline.
-
-CRITICAL CONCEPT — Training vs Inference Consistency:
-The preprocessor is FIT on training data and SAVED. During inference,
-the same fitted preprocessor TRANSFORMS new data. This ensures:
-1. Same encoding categories (no "unknown category" errors)
-2. Same scaling parameters (mean/std from training data)
-3. Same feature ordering
-
-If you refit the preprocessor on new data, the feature values will
-be on a different scale → model predictions will be wrong.
-
-WHY ColumnTransformer:
-- Applies different transforms to different column types
-- Numerical → StandardScaler (zero mean, unit variance)
-- Categorical → OneHotEncoder (binary indicators)
-- Keeps everything in a single serializable pipeline
-
-INTERVIEW INSIGHT: "How do you prevent train/inference skew?"
-Answer: "We serialize the fitted preprocessor alongside the model.
-Both training and inference use the same pipeline, ensuring
-identical feature transformations."
+Data preprocessing pipeline — fit on training data, saved and reused at inference
+to prevent train/serve skew.
 """
 
 import numpy as np

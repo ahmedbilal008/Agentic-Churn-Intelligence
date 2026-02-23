@@ -1,23 +1,8 @@
 """
-Training Pipeline
-=================
+Training pipeline — orchestrates the 4-stage DVC pipeline:
+ingest → features → train → evaluate.
 
-Orchestrates the full ML pipeline from raw data to evaluated models.
-
-Can be run:
-1. As DVC stages: uv run python -m src.pipelines.training_pipeline --stage ingest
-2. Programmatically: imported by MCP tools for retraining
-
-DVC PIPELINE DESIGN:
-Each stage has clear inputs/outputs. DVC only re-runs stages
-when their dependencies change. This saves hours in production
-when you tweak hyperparameters (only retrain, no need to re-ingest).
-
-INTERVIEW INSIGHT: "Describe your ML pipeline."
-Answer: "We have a 4-stage DVC pipeline: ingest → features → train →
-evaluate. Each stage is independently executable and cached. The
-pipeline is config-driven through params.yaml, so changing
-hyperparameters only triggers the affected downstream stages."
+Can be run as individual DVC stages or called programmatically for retraining.
 """
 
 import argparse

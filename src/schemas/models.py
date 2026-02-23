@@ -1,20 +1,6 @@
 """
-Pydantic Schemas — The Shared Contract
-=======================================
-
-Schemas define the data contract between components.
-They validate data at boundaries (input/output) to catch errors early.
-
-WHY PYDANTIC:
-- Runtime type validation (not just hints)
-- Auto-generates JSON Schema (useful for MCP tool descriptions)
-- Serialization/deserialization built-in
-- Industry standard for Python APIs
-
-INTERVIEW INSIGHT: "How do you ensure data quality in your ML pipeline?"
-Answer: "We use Pydantic schemas at data ingestion to validate every
-record, and at the API layer to validate inputs/outputs. This catches
-data quality issues before they silently corrupt model training."
+Pydantic schemas — shared data contracts used for input validation at
+ingestion boundaries and MCP tool inputs/outputs.
 """
 
 from pydantic import BaseModel, Field, field_validator

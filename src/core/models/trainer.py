@@ -1,42 +1,7 @@
 """
-Model Training with MLflow Tracking
-====================================
-
-Trains multiple models and logs everything to MLflow.
-
-WHY MULTIPLE MODELS:
-Different models have different strengths:
-
-1. Logistic Regression (BASELINE):
-   - Fast, interpretable, great for understanding feature effects
-   - Used in finance/healthcare where interpretability is mandated
-   - Always start here — if it's good enough, ship it
-
-2. Random Forest:
-   - Handles non-linear relationships
-   - Robust to outliers, less prone to overfitting
-   - Good default for tabular data
-
-3. XGBoost:
-   - State-of-the-art for tabular data
-   - Built-in regularization
-   - Handles class imbalance natively (scale_pos_weight)
-
-INTERVIEW INSIGHT: "Why did you train multiple models?"
-Answer: "We always compare baselines against complex models.
-Sometimes logistic regression matches XGBoost performance with
-10x faster inference. The business context determines the right
-tradeoff between accuracy and interpretability."
-
-MLflow TRACKING:
-We log everything — parameters, metrics, artifacts, plots.
-This makes it trivial to compare runs, reproduce results,
-and select the best model for deployment.
-
-INTERVIEW INSIGHT: "How does your team track experiments?"
-Answer: "We use MLflow. Every training run logs params, metrics,
-and artifacts. Model comparison is instant via the UI. Alternatives
-include Weights & Biases (better UI, cloud-first) and Neptune.ai."
+Model training with MLflow tracking.
+Trains Logistic Regression, Random Forest, and XGBoost; logs params, metrics,
+artifacts, and plots to MLflow for each run.
 """
 
 import json
