@@ -2,6 +2,18 @@
 
 An end-to-end machine learning system for telecom customer churn prediction, built around the **Model Context Protocol (MCP)**. An LLM agent (Gemini) interacts with the ML backend through structured tool calls — predicting churn, explaining predictions with SHAP, comparing models, inspecting data, and triggering retraining. The system integrates experiment tracking (MLflow), data versioning (DVC), a reproducible training pipeline, and a chat-based web client.
 
+Deployed with a cloud-native architecture:
+
+* **Frontend:** Vercel
+* **Backend:** Heroku
+
+**Live Demo:**
+[https://agentic-churn-intelligence.vercel.app/](https://agentic-churn-intelligence.vercel.app/)
+
+**Note for First-Time Access (Important):**
+The backend is hosted on Heroku dyno, which may enter a sleep state after periods of inactivity. The first request can take **30–60 seconds** to respond while the server wakes up. Subsequent requests will be fast.
+
+
 ---
 
 ## Architecture

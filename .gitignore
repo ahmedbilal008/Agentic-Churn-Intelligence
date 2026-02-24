@@ -36,3 +36,5 @@ models/*.joblib
 Thumbs.db
 
 .python-version
+
+NOTES.md
